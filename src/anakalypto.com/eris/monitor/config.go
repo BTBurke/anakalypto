@@ -77,7 +77,7 @@ func newConfig(options ...ConfigOption) (Config, []error) {
 	}
 	c.Shell = shell
 	if len(c.ID) == 0 {
-		errors = append(errors, fmt.Errorf("id is required, use xray -i <id>; new ids are created with xrayctl create"))
+		errors = append(errors, fmt.Errorf("id is required, use eris -i <id>; new ids are created with erisctl create"))
 	}
 
 	if len(errors) > 0 {
@@ -95,7 +95,7 @@ func findDefaultShell() (string, error) {
 }
 
 // ID of this monitor, used to connect the report with the notification
-// channels configured via xrayctl
+// channels configured via erisctl
 func ID(id string) ConfigOption {
 	return func(c *Config) error {
 		c.ID = id
@@ -313,7 +313,7 @@ func Insecure() ConfigOption {
 	}
 }
 
-// NoErrorReports prevents unhandled errors from being reported to xrayo to improve the quality
+// NoErrorReports prevents unhandled errors from being reported to eris to improve the quality
 // and stability of the software.  No private data is sent (e.g., no stdout, stderr, or any config data).
 // The only information sent is the text of the error and a stacktrace.
 func NoErrorReports() ConfigOption {

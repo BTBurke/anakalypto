@@ -324,7 +324,7 @@ func wrapComplexCommand(shell string, args []string) ([]string, func() error, er
 		if err != nil {
 			return args, nil, err
 		}
-		f, err := ioutil.TempFile(wd, "xrayo")
+		f, err := ioutil.TempFile(wd, "eriso")
 		if err != nil {
 			return args, nil, err
 		}
