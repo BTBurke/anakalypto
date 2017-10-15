@@ -1,0 +1,56 @@
+syntax = "proto3";
+package wtf.monitor;
+
+enum ReportReason {
+    Unknown = 0;
+    Success = 1;
+	Failure = 2;
+	Alert = 3;
+	AlertRate = 4;
+	MemoryWarning = 5;
+	TimeWarning = 6;
+	FileNotCreated = 7;
+	Killed = 8;
+	Start = 9;
+}
+
+enum KillReason {
+    NotKilled = 0;
+    Timeout = 1;
+    Memory = 2;
+    Signal = 3;
+}
+
+message Report {
+    string id = 1;
+    string hostname = 2;
+    repeated string stdout = 3;
+    repeated string stderr = 4;
+    bool success = 5;
+    uint64 max_memory = 6;
+    bool killed = 7;
+    KillReason kill_reason = 8;
+    bytes created = 9;
+    ReportReason report_reason = 10;
+    int64 start = 11;
+    int64 finish = 12;
+    string duration = 13;
+    int32 exit_code = 14;
+    bool exit_code_valid = 15;
+    repeated string messages = 16;
+    bytes matches = 17;
+    string user_command = 18;
+    bytes config = 19;
+    int64 created_at = 20;
+}
+
+
+message ReportAck {
+    bool success = 1;
+}
+
+service Reports {
+
+    rpc Create(Report) returns (ReportAck) {}
+
+}

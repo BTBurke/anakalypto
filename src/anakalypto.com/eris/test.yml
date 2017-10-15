@@ -1,0 +1,6 @@
+id: test
+rule: 
+  - "test"
+  - "dude"
+stdout-history: 75
+timeout-warn: 10h
